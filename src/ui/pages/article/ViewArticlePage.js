@@ -4,6 +4,7 @@ export class ViewArticlePage {
   constructor(page) {
     this.page = page;
     this.articleTitleHeader = page.getByRole('heading');
+    this.editButton = page.getByRole('link', { name: 'Edit Article' }).first();
   }
 
   authorLinkInArticleHeader(username) {
@@ -14,9 +15,16 @@ export class ViewArticlePage {
     return this.page.url();
   }
 
+  
   async open(url) {
     await test.step(`Open 'View Article' page`, async () => {
       await this.page.goto(url);
+    });
+  }
+
+  async clickEditArticleButton() {
+    await test.step(`Click 'Edit Article' button`, async () => {
+      await this.editButton.click();
     });
   }
 
