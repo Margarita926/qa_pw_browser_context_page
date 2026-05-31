@@ -11,6 +11,7 @@ export class HomePage {
     this.homeTab = page.getByRole('link', { name: 'Home' });
     this.articleTitleLocator = (title) => page.getByRole('link', { name: title });
     this.previewTextLocator = (text) => page.getByText('No articles are here... yet.');
+    this.SettingsButton = page.getByRole('link', { name: 'Settings' });
 
 
   }
@@ -36,6 +37,13 @@ export class HomePage {
   async openYourHomeTab() {
     await test.step(`Open the 'Your Feed' tab`, async () => {
       await this.homeTab.click();
+    });
+  }
+
+
+  async openSettingsTab() {
+    await test.step(`Open the 'Settings' tab`, async () => {
+      await this.SettingsButton.click();
     });
   }
 

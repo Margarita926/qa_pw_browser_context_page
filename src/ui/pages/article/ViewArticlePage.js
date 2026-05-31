@@ -5,6 +5,7 @@ export class ViewArticlePage {
     this.page = page;
     this.articleTitleHeader = page.getByRole('heading');
     this.editButton = page.getByRole('link', { name: 'Edit Article' }).first();
+    this.SettingsButton = page.getByRole('link', { name: 'Settings' });
   }
 
   authorLinkInArticleHeader(username) {
@@ -20,6 +21,12 @@ export class ViewArticlePage {
     await test.step(`Open 'View Article' page`, async () => {
       await this.page.goto(url);
     });
+  }
+
+  async openSettingsTab(){
+      await test.step(`Open the 'Settings' tab`, async () => {    
+        await this.SettingsButton.click();
+      });
   }
 
   async clickEditArticleButton() {
@@ -45,4 +52,6 @@ export class ViewArticlePage {
       await expect(this.authorLinkInArticleHeader(username)).toBeVisible();
     });
   }
+
+  
 }
